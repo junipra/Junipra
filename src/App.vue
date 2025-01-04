@@ -21,7 +21,9 @@ import { RouterView } from 'vue-router';
     </header>
 
     <main class="flex-1 overflow-y-auto">
-      <RouterView />
+      <div class="pt-8">
+        <RouterView />
+      </div>
     </main>
   </div>
 </template>

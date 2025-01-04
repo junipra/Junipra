@@ -14,7 +14,6 @@ const goToPost = () => {
 </script>
 
 <template>
-  <div class="pt-8">
     <div class="flex flex-col lg:flex-row items-center lg:items-start lg:space-x-8">
       <div class="w-full lg:w-1/2 flex lg:justify-end justify-center">
         <img
@@ -42,5 +41,4 @@ const goToPost = () => {
         </div>
       </div>
     </div>
-  </div>
 </template>
