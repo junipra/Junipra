@@ -1,5 +1,6 @@
 <script setup>
 import { useContactStore } from '../stores/ContactStore';
+import { ArrowPathIcon } from '@heroicons/vue/24/solid'    
 
 const contactStore = useContactStore();
 
@@ -53,7 +54,10 @@ const send = () => {
           @click="send"
           class="inline-flex justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
         >
-            {{ contactStore.sending ? "Sending..." : "Submit" }}
+            <span v-if="contactStore.sending" class="flex items-center space-x-2">
+                <ArrowPathIcon class="w-5 h-5 animate-spin" />
+            </span>
+            <span v-else>Submit</span>
         </button>
       </div>
     </form>
