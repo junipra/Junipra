@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'MysteryQuest';
+  src: url('/fonts/MysteryQuest-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
