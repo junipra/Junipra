@@ -1,0 +1,11 @@
+{
+  "projects": {
+    "default": "junipra-da9b4"
+  },
+  "targets": {},
+  "etags": {
+    "junipra-da9b4": {
+      "extensionInstances": {}
+    }
+  }
+}
