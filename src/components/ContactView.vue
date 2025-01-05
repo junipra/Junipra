@@ -1,8 +1,14 @@
 <script setup>
+import { computed } from "vue";
 import { useContactStore } from '../stores/ContactStore';
 import { ArrowPathIcon } from '@heroicons/vue/24/solid'    
 
 const contactStore = useContactStore();
+
+const isSubmitDisabled = computed(() => {
+  const { name, email, message, sending } = contactStore;
+  return !name || !email || !message || sending;
+});
 
 const send = () => {
   contactStore.submitToFirestore();
@@ -52,7 +58,8 @@ const send = () => {
         <button
           type="button"
           @click="send"
-          class="inline-flex justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          :disabled="isSubmitDisabled"
+          class="inline-flex justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
         >
             <span v-if="contactStore.sending" class="flex items-center space-x-2">
                 <ArrowPathIcon class="w-5 h-5 animate-spin" />
