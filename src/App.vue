@@ -9,7 +9,8 @@ import { RouterView } from 'vue-router';
     <header class="flex items-center justify-between px-4 py-2 bg-[#ffdcbb] shadow-md">
       <div class="flex items-center space-x-4">
         <RouterLink to="/" class="flex items-center space-x-4">
-          <img src="/src/assets/Junipra-logo.png" alt="Junipra Logo" class="w-48" />
+          <img src="/src/assets/Junipra-logo-icon.png" alt="Junipra Logo" class="w-16" />
+          <span class="text-3xl font-mystery text-gray-800">Junipra</span>
         </RouterLink>
       </div>
 
