@@ -1,29 +1,20 @@
 <script setup>
-
-import { RouterView } from 'vue-router';
-
+import DefaultLayout from './components/Default.vue';
 </script>
 
 <template>
-  <div class="flex flex-col h-screen bg-blue-100">
-    <header class="flex items-center justify-between px-4 py-2 bg-[#ffdcbb] shadow-md">
-      <div class="flex items-center space-x-4">
-        <RouterLink to="/" class="flex items-center space-x-4">
-          <img src="/src/assets/Junipra-logo-icon.png" alt="Junipra Logo" class="w-16" />
-          <span class="text-3xl font-mystery text-gray-800">Junipra</span>
-        </RouterLink>
-      </div>
-
-      <nav class="flex space-x-4">
-        <RouterLink to="/contact" class="text-gray-600 hover:text-gray-900">Contact</RouterLink>
-        <RouterLink to="/post" class="text-gray-600 hover:text-gray-900">Post</RouterLink>
-      </nav>
-    </header>
-
-    <main class="flex-1 overflow-y-auto">
-      <div class="pt-8">
-        <RouterView />
-      </div>
-    </main>
-  </div>
+  <DefaultLayout>
+    <transition
+      name="fade"
+      mode="out-in"
+      enter-active-class="transition-opacity duration-500"
+      leave-active-class="transition-opacity duration-500"
+      enter-from-class="opacity-0"
+      enter-to-class="opacity-100"
+      leave-from-class="opacity-100"
+      leave-to-class="opacity-0"
+    >
+      <RouterView />
+    </transition>
+  </DefaultLayout>
 </template>
