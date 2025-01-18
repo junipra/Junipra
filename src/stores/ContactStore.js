@@ -16,15 +16,23 @@ export const useContactStore = defineStore('contact', () => {
       sending.value = true;
       error.value = null;
       success.value = false;
-  
+    
       try {
         await addDoc(collection(db, "submissions"), {
-          name: name.value,
-          email: email.value,
-          message: message.value,
-          submittedAt: new Date().toISOString(),
+          to: ["cambaffuto@icloud.com"], 
+          message: {
+            subject: `New Submission from ${name.value}`,
+            text: `Name: ${name.value}\nEmail: ${email.value}\nMessage: ${message.value}`, 
+            html: `
+              <p><strong>Name:</strong> ${name.value}</p>
+              <p><strong>Email:</strong> ${email.value}</p>
+              <p><strong>Message:</strong> ${message.value}</p>
+            `, 
+          },
+          submittedAt: new Date().toISOString(), 
         });
-        success.value = true; 
+    
+        success.value = true;
         resetForm();
       } catch (err) {
         console.error("Error submitting message to Firestore:", err);
@@ -32,7 +40,7 @@ export const useContactStore = defineStore('contact', () => {
       } finally {
         sending.value = false;
       }
-    };
+    };    
 
     const resetForm = () => {
         name.value = "";

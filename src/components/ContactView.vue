@@ -2,17 +2,25 @@
 import { computed } from "vue";
 import { useContactStore } from '../stores/ContactStore';
 import { ArrowPathIcon } from '@heroicons/vue/24/solid' 
+import { useToast } from "vue-toastification";
 import Footer from './Footer.vue';   
 
 const contactStore = useContactStore();
+const toast = useToast();
 
 const isSubmitDisabled = computed(() => {
   const { name, email, message, sending } = contactStore;
   return !name || !email || !message || sending;
 });
 
-const send = () => {
-  contactStore.submitToFirestore();
+const send = async () => {
+  try {
+    await contactStore.submitToFirestore(); 
+    toast.success("Your message was sent successfully!");
+  } catch (err) {
+    console.error(err);
+    toast.error("Failed to send your message. Please try again.");
+  }
 };
 
 </script>
