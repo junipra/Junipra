@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 .env
+extensions/firestore-send-email.env
 
 # Editor directories and files
 .vscode/*

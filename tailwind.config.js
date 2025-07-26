@@ -6,8 +6,13 @@ export default {
   ],
   theme: {
     extend: {
+      colors: {
+        'brand-purple': '#6b46c1',
+        'brand-blue': '#3b82f6',
+      },
       fontFamily: {
-        mystery: ['MysteryQuest', 'cursive'],
+        sans: ['Inter', 'sans-serif'],
+        heading: ['Poppins', 'sans-serif'],
       },
     },
   },

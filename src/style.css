@@ -2,9 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
 @font-face {
   font-family: 'MysteryQuest';
   src: url('/fonts/MysteryQuest-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
+}
+
+.form-input::placeholder {
+  color: #9ca3af;
 }

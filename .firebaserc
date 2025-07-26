@@ -2,5 +2,12 @@
   "projects": {
     "default": "junipra-da9b4"
   },
-  "targets": {}
+  "targets": {},
+  "etags": {
+    "junipra-da9b4": {
+      "extensionInstances": {
+        "firestore-send-email": "91b2f1a3a89ff219ebf99d66f91bdf740887f7a17071ca89573b6ffc24efe126"
+      }
+    }
+  }
 }
