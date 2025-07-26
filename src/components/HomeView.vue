@@ -5,16 +5,17 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/solid';
 
 const isMenuOpen = ref(false);
 const currentYear = computed(() => new Date().getFullYear());
+
 </script>
 
 <template>
-  <div class="bg-gradient-to-br from-brand-purple to-brand-blue text-white min-h-screen font-sans overflow-x-hidden">
+  <div class="bg-gradient-to-br from-brand-purple to-brand-blue text-white min-h-screen font-sans overflow-x-hidden scroll-smooth">
     <header class="fixed top-0 left-0 right-0 z-50 bg-brand-purple/80 backdrop-blur-md shadow-md">
       <div class="container mx-auto flex items-center justify-between px-6 py-4">
-        <div class="flex items-center space-x-4">
-          <a href="#" class="flex items-center space-x-4 cursor-pointer">
-            <img src="/src/assets/Junipra-logo-icon.png" alt="Junipra Logo" class="w-12" />
-            <span class="text-3xl font-bold font-heading">Junipra</span>
+        <div class="flex items-center space-x-2 md:space-x-4">
+          <a href="#" class="flex items-center space-x-2 md:space-x-4 cursor-pointer">
+            <img src="/src/assets/Junipra-logo-icon.png" alt="Junipra Logo" class="w-10 md:w-12" />
+            <span class="text-2xl md:text-3xl font-bold font-heading">Junipra</span>
           </a>
         </div>
         <nav class="hidden md:flex space-x-8">
@@ -31,7 +32,6 @@ const currentYear = computed(() => new Date().getFullYear());
       </div>
     </header>
 
-    <!-- Mobile Menu -->
     <div v-if="isMenuOpen" class="fixed inset-0 z-40 bg-brand-purple/95 backdrop-blur-md flex flex-col items-center justify-center space-y-8 md:hidden">
       <a href="#services" @click="isMenuOpen = false" class="text-3xl font-bold">Services</a>
       <a href="#playbook" @click="isMenuOpen = false" class="text-3xl font-bold">Playbook</a>
@@ -39,14 +39,20 @@ const currentYear = computed(() => new Date().getFullYear());
     </div>
 
     <main class="container mx-auto px-6 pt-24">
-      <section id="hero" class="text-center relative py-24 scroll-mt-24">
+      <section id="hero" class="text-center relative py-16 md:py-24 scroll-mt-24">
         <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
-        <img src="/src/assets/Junipra_logo.svg" alt="Junipra Logo" class="w-64 mx-auto mb-8 animate-float" />
-        <h1 class="text-5xl md:text-7xl font-extrabold leading-tight font-heading">Junipra Software Studio</h1>
-        <p class="mt-4 text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">
+        <img src="/src/assets/Junipra_logo.svg" alt="Junipra Logo" class="w-40 md:w-64 mx-auto mb-6 md:mb-8 animate-float" />
+        <h1 class="text-4xl md:text-7xl font-extrabold leading-tight font-heading">Junipra Software Studio</h1>
+        <p class="mt-4 text-base md:text-xl text-gray-200 max-w-xs md:max-w-3xl mx-auto">
           Crafting elegant solutions to complex digital problems.
         </p>
-        <a href="#contact" class="mt-8 inline-block bg-white text-brand-purple font-bold rounded-full px-8 py-3 hover:bg-gray-200 transition-colors">Start Your Project</a>
+        <a href="#contact">
+          <button
+            style="z-index: 9999; position: relative;"
+            class="mt-8 inline-block bg-white text-brand-purple font-bold rounded-full px-6 md:px-8 py-3 hover:bg-gray-200 transition-colors text-base md:text-lg cursor-pointer">
+            Start Your Project
+          </button>
+        </a>
       </section>
 
       <section id="services" class="mt-32 scroll-mt-24">
