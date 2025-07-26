@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue';
 import ContactForm from './ContactView.vue';
+import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/solid';
 
 const isMenuOpen = ref(false);
 const currentYear = computed(() => new Date().getFullYear());
@@ -8,25 +9,47 @@ const currentYear = computed(() => new Date().getFullYear());
 
 <template>
   <div class="bg-gradient-to-br from-brand-purple to-brand-blue text-white min-h-screen font-sans overflow-x-hidden">
-    <header class="flex items-center justify-between px-6 py-4 shadow-md">
-      <div class="flex items-center space-x-4">
-        <img src="/src/assets/Junipra-logo-icon.png" alt="Junipra Logo" class="w-12" />
-        <span class="text-3xl font-bold font-heading">Junipra</span>
+    <header class="fixed top-0 left-0 right-0 z-50 bg-brand-purple/80 backdrop-blur-md shadow-md">
+      <div class="container mx-auto flex items-center justify-between px-6 py-4">
+        <div class="flex items-center space-x-4">
+          <a href="#" class="flex items-center space-x-4 cursor-pointer">
+            <img src="/src/assets/Junipra-logo-icon.png" alt="Junipra Logo" class="w-12" />
+            <span class="text-3xl font-bold font-heading">Junipra</span>
+          </a>
+        </div>
+        <nav class="hidden md:flex space-x-8">
+          <a href="#services" class="text-lg hover:text-gray-300 transition-colors">Services</a>
+          <a href="#playbook" class="text-lg hover:text-gray-300 transition-colors">Playbook</a>
+          <a href="#contact" class="text-lg hover:text-gray-300 transition-colors">Contact</a>
+        </nav>
+        <div class="md:hidden">
+          <button @click="isMenuOpen = !isMenuOpen">
+            <Bars3Icon v-if="!isMenuOpen" class="w-8 h-8" />
+            <XMarkIcon v-else class="w-8 h-8" />
+          </button>
+        </div>
       </div>
     </header>
 
-    <main class="container mx-auto px-6 py-16">
-      <section id="hero" class="text-center relative">
-        <div class="absolute -top-20 -left-20 w-64 h-64 bg-white/10 rounded-full opacity-50"></div>
-        <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-white/10 rounded-full opacity-50"></div>
-        <h1 class="text-5xl md:text-6xl font-extrabold leading-tight font-heading">Your Partner in Digital Innovation</h1>
+    <!-- Mobile Menu -->
+    <div v-if="isMenuOpen" class="fixed inset-0 z-40 bg-brand-purple/95 backdrop-blur-md flex flex-col items-center justify-center space-y-8 md:hidden">
+      <a href="#services" @click="isMenuOpen = false" class="text-3xl font-bold">Services</a>
+      <a href="#playbook" @click="isMenuOpen = false" class="text-3xl font-bold">Playbook</a>
+      <a href="#contact" @click="isMenuOpen = false" class="text-3xl font-bold">Contact</a>
+    </div>
+
+    <main class="container mx-auto px-6 pt-24">
+      <section id="hero" class="text-center relative py-24 scroll-mt-24">
+        <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
+        <img src="/src/assets/Junipra_logo.svg" alt="Junipra Logo" class="w-64 mx-auto mb-8 animate-float" />
+        <h1 class="text-5xl md:text-7xl font-extrabold leading-tight font-heading">Junipra Software Studio</h1>
         <p class="mt-4 text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">
-          We are a passionate team of developers and designers dedicated to building exceptional software solutions that drive your business forward.
+          Crafting elegant solutions to complex digital problems.
         </p>
-        <a href="#contact" class="mt-8 inline-block bg-white text-brand-purple font-bold rounded-full px-8 py-3 hover:bg-gray-200 transition-colors">Let's Talk</a>
+        <a href="#contact" class="mt-8 inline-block bg-white text-brand-purple font-bold rounded-full px-8 py-3 hover:bg-gray-200 transition-colors">Start Your Project</a>
       </section>
 
-      <section id="services" class="mt-32">
+      <section id="services" class="mt-32 scroll-mt-24">
         <h2 class="text-4xl font-bold text-center font-heading">What We Do</h2>
         <div class="mt-16 space-y-16">
           
@@ -63,7 +86,7 @@ const currentYear = computed(() => new Date().getFullYear());
         </div>
       </section>
 
-      <section id="playbook" class="mt-24">
+      <section id="playbook" class="mt-24 scroll-mt-24">
         <h2 class="text-4xl font-bold text-center font-heading">Our Playbook</h2>
         <div class="grid md:grid-cols-3 gap-8 mt-12">
           <div class="bg-white/10 p-8 rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300">
@@ -84,7 +107,7 @@ const currentYear = computed(() => new Date().getFullYear());
         </div>
       </section>
 
-      <section id="contact" class="mt-24">
+      <section id="contact" class="mt-24 scroll-mt-24">
         <ContactForm />
       </section>
     </main>
