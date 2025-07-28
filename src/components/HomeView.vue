@@ -48,8 +48,7 @@ const currentYear = computed(() => new Date().getFullYear());
         </p>
         <a href="#contact">
           <button
-            style="z-index: 9999; position: relative;"
-            class="mt-8 inline-block bg-white text-brand-purple font-bold rounded-full px-6 md:px-8 py-3 hover:bg-gray-200 transition-colors text-base md:text-lg cursor-pointer">
+            class="relative mt-8 inline-block bg-white text-brand-purple font-bold rounded-full px-6 md:px-8 py-3 hover:bg-gray-200 transition-colors text-base md:text-lg cursor-pointer">
             Start Your Project
           </button>
         </a>
