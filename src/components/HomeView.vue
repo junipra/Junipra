@@ -119,11 +119,7 @@ const currentYear = computed(() => new Date().getFullYear());
 
     <footer class="py-8 text-center text-gray-300">
       <p>&copy; {{ currentYear }} Junipra. All rights reserved.</p>
-      <!-- <div class="flex justify-center space-x-4 mt-4">
-        <a href="#" class="hover:text-white">Twitter</a>
-        <a href="#" class="hover:text-white">LinkedIn</a>
-        <a href="#" class="hover:text-white">GitHub</a>
-      </div> -->
+      <a href="mailto:info@junipra.com" class="hover:text-white">info@junipra.com</a>
     </footer>
   </div>
 </template>
