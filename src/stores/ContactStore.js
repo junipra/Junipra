@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 
 export const useContactStore = defineStore('contact', () => {
@@ -11,6 +11,7 @@ export const useContactStore = defineStore('contact', () => {
     const sending = ref(false);
     const error = ref(null);
     const success = ref(false);
+    const recipient = import.meta.env.VITE_CONTACT_RECIPIENT || "info@junipra.com";
   
     const submitToFirestore = async () => {
       sending.value = true;
@@ -18,18 +19,22 @@ export const useContactStore = defineStore('contact', () => {
       success.value = false;
     
       try {
+        const trimmedName = name.value.trim();
+        const trimmedEmail = email.value.trim();
+        const trimmedMessage = message.value.trim();
+
         await addDoc(collection(db, "submissions"), {
-          to: ["cambaffuto@icloud.com"], 
+          to: [recipient],
           message: {
-            subject: `New Submission from ${name.value}`,
-            text: `Name: ${name.value}\nEmail: ${email.value}\nMessage: ${message.value}`, 
+            subject: `New Submission from ${trimmedName}`,
+            text: `Name: ${trimmedName}\nEmail: ${trimmedEmail}\nMessage: ${trimmedMessage}`, 
             html: `
-              <p><strong>Name:</strong> ${name.value}</p>
-              <p><strong>Email:</strong> ${email.value}</p>
-              <p><strong>Message:</strong> ${message.value}</p>
+              <p><strong>Name:</strong> ${trimmedName}</p>
+              <p><strong>Email:</strong> ${trimmedEmail}</p>
+              <p><strong>Message:</strong> ${trimmedMessage}</p>
             `, 
           },
-          submittedAt: new Date().toISOString(), 
+          submittedAt: serverTimestamp(),
         });
     
         success.value = true;
@@ -47,6 +52,11 @@ export const useContactStore = defineStore('contact', () => {
         email.value = "";
         message.value = "";
     };
+
+    const clearStatus = () => {
+      error.value = null;
+      success.value = false;
+    };
   
     return {
       name,
@@ -55,6 +65,7 @@ export const useContactStore = defineStore('contact', () => {
       sending,
       error,
       success,
+      clearStatus,
       submitToFirestore,
       resetForm,
     };
