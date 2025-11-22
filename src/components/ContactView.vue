@@ -67,7 +67,7 @@ const send = async () => {
           type="button"
           @click="send"
           :disabled="isSubmitDisabled"
-          class="inline-flex justify-center rounded-full border border-transparent bg-white py-3 px-8 text-sm font-bold text-brand-purple shadow-sm hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-brand-purple disabled:opacity-50 disabled:cursor-not-allowed"
+          class="inline-flex justify-center rounded-full border border-transparent bg-white py-3 px-8 text-sm font-bold text-brand-purple shadow-xs hover:bg-gray-200 focus:outline-hidden focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-brand-purple disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <span v-if="contactStore.sending" class="flex items-center space-x-2">
             <ArrowPathIcon class="w-5 h-5 animate-spin" />

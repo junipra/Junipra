@@ -9,7 +9,7 @@ const currentYear = computed(() => new Date().getFullYear());
 </script>
 
 <template>
-  <div class="bg-gradient-to-br from-brand-purple to-brand-blue text-white min-h-screen font-sans overflow-x-hidden scroll-smooth">
+  <div class="bg-linear-to-br from-brand-purple to-brand-blue text-white min-h-screen font-sans overflow-x-hidden scroll-smooth">
     <header class="fixed top-0 left-0 right-0 z-50 bg-brand-purple/80 backdrop-blur-md shadow-md">
       <div class="container mx-auto flex items-center justify-between px-6 py-4">
         <div class="flex items-center space-x-2 md:space-x-4">
