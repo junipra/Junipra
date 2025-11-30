@@ -44,7 +44,6 @@ const send = async () => {
           id="name"
           v-model.trim="contactStore.name"
           class="mt-1 p-3 block w-full rounded-md bg-white/20 text-white border-transparent focus:border-white focus:ring-0 placeholder:text-gray-400"
-          placeholder="Your name"
         />
       </div>
 
@@ -55,7 +54,6 @@ const send = async () => {
           id="email"
           v-model.trim="contactStore.email"
           class="mt-1 p-3 block w-full rounded-md bg-white/20 text-white border-transparent focus:border-white focus:ring-0 placeholder:text-gray-400"
-          placeholder="Your email"
         />
       </div>
 
@@ -66,7 +64,6 @@ const send = async () => {
           v-model.trim="contactStore.message"
           class="mt-1 p-3 block w-full rounded-md bg-white/20 text-white border-transparent focus:border-white focus:ring-0 placeholder:text-gray-400"
           rows="4"
-          placeholder="Your message"
         ></textarea>
       </div>
 

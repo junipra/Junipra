@@ -2,6 +2,14 @@
 import { ref, computed } from 'vue';
 import ContactForm from './ContactView.vue';
 import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/solid';
+import {
+  CogIcon,
+  SparklesIcon,
+  DevicePhoneMobileIcon,
+  RectangleStackIcon,
+  ClockIcon,
+  UserGroupIcon,
+} from '@heroicons/vue/24/outline';
 import logoIcon from '../assets/Junipra-logo-icon.png';
 import logoFull from '../assets/Junipra_logo.svg';
 
@@ -18,17 +26,17 @@ const services = [
   {
     title: 'Custom Software',
     description: 'We build bespoke software tailored to your exact needs. From internal dashboards to complex enterprise systems, we deliver robust and scalable solutions.',
-    icon: { paths: ['M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4'], strokeWidth: 1 },
+    icon: CogIcon,
   },
   {
     title: 'AI & Automation',
     description: 'Unlock the power of AI to automate tasks, gain insights from your data, and create intelligent applications that give you a competitive edge.',
-    icon: { paths: ['M13 10V3L4 14h7v7l9-11h-7z'], strokeWidth: 1 },
+    icon: SparklesIcon,
   },
   {
     title: 'Application Development',
     description: 'We design and develop beautiful, intuitive, and high-performance web and mobile applications that your users will love.',
-    icon: { paths: ['M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z'], strokeWidth: 1 },
+    icon: DevicePhoneMobileIcon,
   },
 ];
 
@@ -36,17 +44,17 @@ const playbookItems = [
   {
     title: 'Clarity from Complexity',
     description: 'We excel at untangling complex business logic and technical challenges, delivering simple and elegant solutions that are easy to use and understand.',
-    icon: { paths: ['M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2H7a2 2 0 00-2 2v2'], strokeWidth: 2 },
+    icon: RectangleStackIcon,
   },
   {
     title: 'Automate & Accelerate',
     description: 'We identify opportunities to automate manual processes and leverage AI, freeing up your team to focus on what they do best.',
-    icon: { paths: ['M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'], strokeWidth: 2 },
+    icon: ClockIcon,
   },
   {
     title: 'Build & Belong',
     description: 'We believe in true partnership. We work closely with you, fostering a collaborative environment where your team feels like an extension of ours.',
-    icon: { paths: ['M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z'], strokeWidth: 2 },
+    icon: UserGroupIcon,
   },
 ];
 
@@ -120,22 +128,7 @@ const playbookItems = [
             :class="{'md:flex-row-reverse': index === 1}"
           >
             <div class="w-full md:w-1/2 flex justify-center">
-              <svg
-                class="w-40 h-40"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-                :stroke-width="service.icon.strokeWidth || 1"
-              >
-                <path
-                  v-for="(path, pathIndex) in service.icon.paths"
-                  :key="`${service.title}-path-${pathIndex}`"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  :d="path"
-                />
-              </svg>
+              <component :is="service.icon" class="w-40 h-40 text-white" />
             </div>
             <div class="w-full md:w-1/2">
               <h3 class="text-3xl font-bold font-heading">{{ service.title }}</h3>
@@ -154,22 +147,7 @@ const playbookItems = [
             :key="item.title"
             class="bg-white/10 p-8 rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300"
           >
-            <svg
-              class="w-16 h-16 mx-auto mb-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-              :stroke-width="item.icon.strokeWidth || 2"
-            >
-              <path
-                v-for="(path, pathIndex) in item.icon.paths"
-                :key="`${item.title}-icon-${pathIndex}`"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                :d="path"
-              />
-            </svg>
+            <component :is="item.icon" class="w-16 h-16 mx-auto mb-4 text-white" />
             <h3 class="text-2xl font-bold font-heading">{{ item.title }}</h3>
             <p class="mt-4 text-gray-300">{{ item.description }}</p>
           </div>
