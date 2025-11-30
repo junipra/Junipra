@@ -11,6 +11,7 @@ export const useContactStore = defineStore('contact', () => {
     const sending = ref(false);
     const error = ref(null);
     const success = ref(false);
+    let successTimeout = null;
     const recipient = import.meta.env.VITE_CONTACT_RECIPIENT || "info@junipra.com";
   
     const submitToFirestore = async () => {
@@ -38,6 +39,13 @@ export const useContactStore = defineStore('contact', () => {
         });
     
         success.value = true;
+       
+        if (successTimeout) clearTimeout(successTimeout);
+        successTimeout = setTimeout(() => {
+          success.value = false;
+          successTimeout = null;
+        }, 5000);
+
         resetForm();
       } catch (err) {
         console.error("Error submitting message to Firestore:", err);
@@ -55,6 +63,10 @@ export const useContactStore = defineStore('contact', () => {
 
     const clearStatus = () => {
       error.value = null;
+      if (successTimeout) {
+        clearTimeout(successTimeout);
+        successTimeout = null;
+      }
       success.value = false;
     };
   
