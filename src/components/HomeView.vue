@@ -97,7 +97,7 @@ const playbookItems = [
       <section id="hero" class="text-center relative py-16 md:py-24 scroll-mt-24">
         <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
         <img :src="logoFull" alt="Junipra Logo" class="w-40 md:w-64 mx-auto mb-6 md:mb-8 animate-float" />
-        <h1 class="text-4xl md:text-7xl font-extrabold leading-tight font-heading">Junipra Software Studio</h1>
+        <h1 class="text-4xl md:text-7xl font-extrabold leading-tight font-heading">Junipra Web Services</h1>
         <p class="mt-4 text-base md:text-xl text-gray-200 max-w-xs md:max-w-3xl mx-auto">
           Crafting elegant solutions to complex digital problems.
         </p>
