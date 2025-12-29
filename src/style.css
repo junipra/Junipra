@@ -24,10 +24,12 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    background: var(--color-brand-purple);
   }
 
   body {
     overflow-x: hidden;
+    background: var(--color-brand-purple);
   }
 }
 
