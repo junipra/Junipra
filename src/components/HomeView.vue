@@ -61,12 +61,15 @@ const playbookItems = [
 </script>
 
 <template>
-  <div class="bg-linear-to-br from-brand-purple to-brand-blue text-white min-h-screen font-sans overflow-x-hidden scroll-smooth">
-    <header class="fixed top-0 left-0 right-0 z-50 bg-brand-purple backdrop-blur-md shadow-md">
-      <div class="container mx-auto flex items-center justify-between px-6 py-4">
+  <div class="min-h-screen overflow-x-hidden scroll-smooth">
+    <header
+      class="sticky top-0 z-50 border-b backdrop-blur-md"
+      style="background: var(--color-bg); border-color: var(--color-border);"
+    >
+      <div class="container-page flex items-center justify-between py-4">
         <div class="flex items-center space-x-2 md:space-x-4">
           <a href="#" class="flex items-center space-x-2 md:space-x-4 cursor-pointer">
-            <img :src="logoIcon" alt="Junipra Logo" class="w-10 md:w-12" />
+            <img :src="logoFull" alt="Junipra Logo" class="w-12 md:w-16" />
             <span class="text-2xl md:text-3xl font-bold font-heading">Junipra</span>
           </a>
         </div>
@@ -75,7 +78,7 @@ const playbookItems = [
             v-for="link in navLinks"
             :key="link.href"
             :href="link.href"
-            class="text-lg hover:text-gray-300 transition-colors"
+            class="text-sm font-semibold"
           >
             {{ link.label }}
           </a>
@@ -89,79 +92,100 @@ const playbookItems = [
       </div>
     </header>
 
-    <div v-if="isMenuOpen" class="fixed inset-0 z-40 bg-brand-purple/95 backdrop-blur-md flex flex-col items-center justify-center space-y-8 md:hidden">
+    <div
+      v-if="isMenuOpen"
+      class="fixed inset-0 z-40 backdrop-blur-md flex flex-col items-center justify-center space-y-8 md:hidden"
+      style="background: var(--color-bg);"
+    >
       <a
         v-for="link in navLinks"
         :key="link.href"
         :href="link.href"
         @click="isMenuOpen = false"
-        class="text-3xl font-bold"
+        class="text-2xl font-semibold"
       >
         {{ link.label }}
       </a>
     </div>
 
-    <main class="container mx-auto px-6 pt-24">
-      <section id="hero" class="text-center relative py-16 md:py-24 scroll-mt-24">
-        <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
-        <img :src="logoFull" alt="Junipra Logo" class="w-40 md:w-64 mx-auto mb-6 md:mb-8 animate-float" />
-        <h1 class="text-4xl md:text-7xl font-extrabold leading-tight font-heading">Junipra Web Services</h1>
-        <p class="mt-4 text-base md:text-xl text-gray-200 max-w-xs md:max-w-3xl mx-auto">
-          Crafting elegant solutions to complex digital problems.
-        </p>
-        <a href="#contact">
-          <button
-            class="relative mt-8 inline-block bg-white text-brand-purple font-bold rounded-full px-6 md:px-8 py-3 hover:bg-gray-200 transition-colors text-base md:text-lg cursor-pointer">
-            Start Your Project
-          </button>
-        </a>
-      </section>
-
-      <section id="services" class="mt-32 scroll-mt-24">
-        <h2 class="text-4xl font-bold text-center font-heading">What We Do</h2>
-        <div class="mt-16 space-y-16">
-          
-          <div
-            v-for="(service, index) in services"
-            :key="service.title"
-            class="flex flex-col md:flex-row items-center gap-8"
-            :class="{'md:flex-row-reverse': index === 1}"
-          >
-            <div class="w-full md:w-1/2 flex justify-center">
-              <component :is="service.icon" class="w-40 h-40 text-white" />
-            </div>
-            <div class="w-full md:w-1/2">
-              <h3 class="text-3xl font-bold font-heading">{{ service.title }}</h3>
-              <p class="mt-4 text-gray-300 text-lg">{{ service.description }}</p>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <section id="playbook" class="mt-24 scroll-mt-24">
-        <h2 class="text-4xl font-bold text-center font-heading">Our Playbook</h2>
-        <div class="grid md:grid-cols-3 gap-8 mt-12">
-          <div
-            v-for="item in playbookItems"
-            :key="item.title"
-            class="bg-white/10 p-8 rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300"
-          >
-            <component :is="item.icon" class="w-16 h-16 mx-auto mb-4 text-white" />
-            <h3 class="text-2xl font-bold font-heading">{{ item.title }}</h3>
-            <p class="mt-4 text-gray-300">{{ item.description }}</p>
+    <main class="min-h-screen">
+      <section id="hero" class="section scroll-mt-24">
+        <div class="container-page text-center">
+          <img :src="logoFull" alt="Junipra Logo" class="w-32 md:w-40 mx-auto mt-6 animate-float" />
+          <h1 class="mt-6 text-4xl sm:text-5xl font-semibold leading-tight">Junipra Web Services</h1>
+          <p class="mt-4 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto" style="color: var(--color-text-muted);">
+            Crafting elegant solutions to complex digital problems with calm, clear, and capable delivery.
+          </p>
+          <div class="mt-8 flex flex-wrap justify-center gap-3">
+            <a href="#contact" class="btn btn-primary">Start Your Project</a>
+            <a href="#services" class="btn btn-secondary">View Services</a>
           </div>
         </div>
       </section>
 
-      <section id="contact" class="mt-24 scroll-mt-24">
-        <ContactForm />
+      <section id="services" class="section section-muted scroll-mt-24">
+        <div class="container-page">
+          <h2 class="text-2xl sm:text-3xl font-semibold text-center">What We Do</h2>
+          <div class="mt-10 grid gap-6 md:grid-cols-3">
+            <div v-for="service in services" :key="service.title" class="card">
+              <div class="flex items-start gap-4">
+                <div
+                  class="h-9 w-9 rounded-xl p-2 flex items-center justify-center"
+                  style="background: var(--color-juniper-100); border: 1px solid var(--color-juniper-300);"
+                >
+                  <component :is="service.icon" class="h-5 w-5" style="color: var(--color-juniper-800);" />
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold">{{ service.title }}</h3>
+                  <p class="mt-2 text-sm leading-relaxed" style="color: var(--color-text-muted);">
+                    {{ service.description }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="playbook" class="section scroll-mt-24">
+        <div class="container-page">
+          <h2 class="text-2xl sm:text-3xl font-semibold text-center">Our Playbook</h2>
+          <div class="grid gap-6 md:grid-cols-3 mt-10">
+            <div v-for="item in playbookItems" :key="item.title" class="card text-center">
+              <div
+                class="h-12 w-12 rounded-2xl flex items-center justify-center mx-auto"
+                style="background: var(--color-juniper-100); border: 1px solid var(--color-juniper-300);"
+              >
+                <component :is="item.icon" class="h-6 w-6" style="color: var(--color-juniper-800);" />
+              </div>
+              <h3 class="mt-4 text-lg font-semibold">{{ item.title }}</h3>
+              <p class="mt-3 text-sm leading-relaxed" style="color: var(--color-text-muted);">
+                {{ item.description }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section section-muted scroll-mt-24">
+        <div class="container-page">
+          <ContactForm />
+        </div>
       </section>
     </main>
 
-    <footer class="py-8 text-center text-gray-300">
-      <p>&copy; {{ currentYear }} Junipra. All rights reserved.</p>
-      <a href="mailto:info@junipra.com" class="hover:text-white">info@junipra.com</a>
+    <footer class="section section-muted">
+      <div class="container-page text-center">
+        <h3 class="text-xl font-semibold">Junipra</h3>
+        <p class="mt-2 text-sm" style="color: var(--color-text-muted);">
+          &copy; {{ currentYear }} Junipra. All rights reserved.
+        </p>
+        <div class="mt-3 flex justify-center gap-6 text-sm">
+          <a href="#services">Services</a>
+          <a href="#playbook">Playbook</a>
+          <a href="mailto:info@junipra.com">info@junipra.com</a>
+        </div>
+      </div>
     </footer>
   </div>
 </template>

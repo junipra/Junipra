@@ -1,13 +1,66 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @theme {
-  --color-brand-purple: #6b46c1;
-  --color-brand-blue: #3b82f6;
-  --color-placeholder: #9ca3af;
+  /* =========================
+     Junipra Color Tokens
+     ========================= */
 
-  --font-sans: 'Plus Jakarta Sans', sans-serif;
-  --font-heading: 'Sora', sans-serif;
+  /* Neutrals (paper + ink) */
+  --color-paper-50:  #FAFAF2;
+  --color-paper-100: #F0F0E0; /* main site background */
+  --color-paper-200: #E7E7D6; /* alt section tint / hover surface */
+  --color-paper-300: #DADAC8; /* borders on paper */
 
+  --color-ink-900: #0B2430;
+  --color-ink-800: #103040; /* primary text */
+  --color-ink-700: #2B4A5A; /* secondary text */
+
+  /* Brand accents */
+  --color-berry-700: #2C5F7F; /* hover/active */
+  --color-berry-600: #3A789D;
+  --color-berry-500: #4E90B9; /* primary accent */
+  --color-berry-300: #7DB4D4; /* tint */
+  --color-berry-100: #D9EDF7; /* soft fill */
+
+  --color-juniper-800: #324A28; /* hover/active */
+  --color-juniper-600: #4F6B3A; /* supporting accent */
+  --color-juniper-300: #9AB483; /* tint */
+  --color-juniper-100: #E2EBDD; /* soft fill */
+
+  /* Convenience aliases (so your classes read nicely) */
+  --color-bg: var(--color-paper-100);
+  --color-surface: var(--color-paper-50);
+  --color-surface-muted: color-mix(in oklab, var(--color-paper-200) 65%, white 35%);
+  --color-border: var(--color-paper-300);
+  --color-text: var(--color-ink-800);
+  --color-text-muted: var(--color-ink-700);
+  --color-link: var(--color-berry-700);
+
+  /* =========================
+     Typography
+     ========================= */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Fraunces", ui-serif, Georgia, serif;
+
+  /* Slightly “crafted” tracking without looking fancy */
+  --tracking-tightish: 0.01em;
+
+  /* =========================
+     Shadows (ink-tinted, soft)
+     ========================= */
+  --shadow-edge: 0 1px 0 rgba(16, 48, 64, 0.10);
+  --shadow-lift: 0 10px 30px rgba(16, 48, 64, 0.10);
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+
+  /* =========================
+     Radius
+     ========================= */
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+
+  /* =========================
+     Motion
+     ========================= */
   --animate-float: float 4s ease-in-out infinite;
 
   @keyframes float {
@@ -21,18 +74,134 @@
   }
 }
 
+/* =========================
+   Base
+   ========================= */
 @layer base {
   html {
     scroll-behavior: smooth;
-    background: var(--color-brand-purple);
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
   }
 
   body {
     overflow-x: hidden;
-    background: var(--color-brand-purple);
+    background: var(--color-bg);
+    color: var(--color-text);
+  }
+
+  /* Headings get the serif */
+  h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    letter-spacing: var(--tracking-tightish);
+    color: var(--color-text);
+  }
+
+  /* Links feel intentional (underline, offset, tint) */
+  a {
+    color: var(--color-link);
+    text-decoration: underline;
+    text-decoration-color: var(--color-berry-300);
+    text-underline-offset: 4px;
+  }
+  a:hover {
+    color: var(--color-berry-600);
+    text-decoration-color: var(--color-berry-500);
+  }
+
+  /* Better default focus (site-wide) */
+  :focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 2px var(--color-berry-300),
+      0 0 0 4px var(--color-bg);
+    border-radius: 10px;
   }
 }
 
+/* =========================
+   Components (optional but handy)
+   Use these as class names:
+   btn btn-primary, card, input, etc.
+   ========================= */
+@layer components {
+  .container-page {
+    @apply mx-auto max-w-6xl px-6;
+  }
+
+  .section {
+    @apply py-14;
+  }
+
+  .section-muted {
+    background: var(--color-surface-muted);
+  }
+
+  .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-edge);
+    @apply p-6 transition;
+  }
+  .card:hover {
+    box-shadow: var(--shadow-lift);
+    transform: translateY(-2px);
+  }
+
+  .btn {
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-edge);
+    @apply inline-flex items-center justify-center px-5 py-3 text-sm font-semibold transition;
+  }
+
+  .btn-primary {
+    background: var(--color-berry-500);
+    color: var(--color-paper-50);
+  }
+  .btn-primary:hover { background: var(--color-berry-600); }
+  .btn-primary:active { background: var(--color-berry-700); }
+
+  .btn-secondary {
+    background: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid var(--color-juniper-300);
+    box-shadow: var(--shadow-inset);
+  }
+  .btn-secondary:hover { background: var(--color-juniper-100); }
+
+  .badge {
+    background: var(--color-juniper-100);
+    border: 1px solid var(--color-juniper-300);
+    border-radius: 999px;
+    @apply inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold;
+  }
+
+  .input,
+  .textarea {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-inset);
+    color: var(--color-text);
+    @apply w-full px-4 py-3 text-sm transition;
+  }
+  .textarea { @apply min-h-[140px]; }
+
+  .input:focus,
+  .textarea:focus {
+    border-color: var(--color-berry-300);
+    outline: none;
+    box-shadow:
+      var(--shadow-inset),
+      0 0 0 2px var(--color-berry-300);
+  }
+}
+
+/* Placeholder color */
+.input::placeholder,
+.textarea::placeholder,
 .form-input::placeholder {
-  color: var(--color-placeholder);
+  color: color-mix(in oklab, var(--color-text-muted) 55%, var(--color-bg) 45%);
 }

@@ -33,37 +33,40 @@ const send = async () => {
 </script>
 
 <template>
-  <div class="w-full max-w-2xl mx-auto bg-white/10 p-8 rounded-lg shadow-lg">
-    <h2 class="text-4xl font-bold text-center text-white font-heading">Let's Build Together</h2>
-    <p class="text-center text-gray-300 mt-2">Tell us about your project and we'll be in touch.</p>
-    <form class="mt-8 space-y-6" @submit.prevent="send">
-      <div>
-        <label for="name" class="block text-sm font-medium text-gray-300">Name</label>
-        <input
-          type="text"
-          id="name"
-          v-model.trim="contactStore.name"
-          class="mt-1 p-3 block w-full rounded-md bg-white/20 text-white border-transparent focus:border-white focus:ring-0 placeholder:text-gray-400"
-        />
+  <div class="w-full max-w-2xl mx-auto card">
+    <h2 class="text-2xl sm:text-3xl font-semibold text-center">Let's Build Together</h2>
+    <p class="text-center mt-2" style="color: var(--color-text-muted);">
+      Tell us about your project and we'll be in touch.
+    </p>
+    <form class="mt-8 grid gap-4" @submit.prevent="send">
+      <div class="grid gap-4 md:grid-cols-2">
+        <div>
+          <label for="name" class="block text-sm font-semibold">Name</label>
+          <input
+            type="text"
+            id="name"
+            v-model.trim="contactStore.name"
+            class="input mt-2"
+          />
+        </div>
+
+        <div>
+          <label for="email" class="block text-sm font-semibold">Email</label>
+          <input
+            type="email"
+            id="email"
+            v-model.trim="contactStore.email"
+            class="input mt-2"
+          />
+        </div>
       </div>
 
       <div>
-        <label for="email" class="block text-sm font-medium text-gray-300">Email</label>
-        <input
-          type="email"
-          id="email"
-          v-model.trim="contactStore.email"
-          class="mt-1 p-3 block w-full rounded-md bg-white/20 text-white border-transparent focus:border-white focus:ring-0 placeholder:text-gray-400"
-        />
-      </div>
-
-      <div>
-        <label for="message" class="block text-sm font-medium text-gray-300">Message</label>
+        <label for="message" class="block text-sm font-semibold">Message</label>
         <textarea
           id="message"
           v-model.trim="contactStore.message"
-          class="mt-1 p-3 block w-full rounded-md bg-white/20 text-white border-transparent focus:border-white focus:ring-0 placeholder:text-gray-400"
-          rows="4"
+          class="textarea mt-2"
         ></textarea>
       </div>
 
@@ -78,7 +81,7 @@ const send = async () => {
         <button
           type="submit"
           :disabled="isSubmitDisabled"
-          class="inline-flex justify-center rounded-full border border-transparent bg-white py-3 px-8 text-sm font-bold text-brand-purple shadow-xs hover:bg-gray-200 focus:outline-hidden focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-brand-purple disabled:opacity-50 disabled:cursor-not-allowed"
+          class="btn btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <span v-if="contactStore.sending" class="flex items-center space-x-2">
             <ArrowPathIcon class="w-5 h-5 animate-spin" />
