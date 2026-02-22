@@ -73,9 +73,6 @@ const send = async () => {
       <div v-if="contactStore.error" class="rounded-md bg-red-500/10 border border-red-500/50 px-4 py-3 text-red-100 text-sm">
         {{ contactStore.error }}
       </div>
-      <div v-else-if="contactStore.success" class="rounded-md bg-emerald-500/10 border border-emerald-500/50 px-4 py-3 text-emerald-100 text-sm">
-        Thanks! Your message was sent.
-      </div>
 
       <div class="flex justify-end">
         <button

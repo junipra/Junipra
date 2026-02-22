@@ -10,8 +10,7 @@ import {
   ClockIcon,
   UserGroupIcon,
 } from '@heroicons/vue/24/outline';
-import logoIcon from '../assets/Junipra-logo-icon.png';
-import logoFull from '../assets/Junipra_logo.svg';
+import logoFull from '../assets/JunipraHDBerries.png';
 
 const isMenuOpen = ref(false);
 const currentYear = computed(() => new Date().getFullYear());
@@ -111,7 +110,7 @@ const playbookItems = [
     <main class="min-h-screen">
       <section id="hero" class="section scroll-mt-24">
         <div class="container-page text-center">
-          <img :src="logoFull" alt="Junipra Logo" class="w-32 md:w-40 mx-auto mt-6 animate-float" />
+          <img :src="logoFull" alt="Junipra Logo" class="w-40 md:w-40 mx-auto mt-6" />
           <h1 class="mt-6 text-4xl sm:text-5xl font-semibold leading-tight">Junipra Web Services</h1>
           <p class="mt-4 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto" style="color: var(--color-text-muted);">
             Crafting elegant solutions to complex digital problems with calm, clear, and capable delivery.
