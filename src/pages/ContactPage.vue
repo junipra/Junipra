@@ -260,9 +260,6 @@ function escapeHtml(value: string) {
                 <span>{{ isSubmitting ? "Sending..." : "Send Inquiry" }}</span>
                 <ArrowRight class="size-4" />
               </Button>
-              <p class="text-sm leading-6 text-muted-foreground">
-                We review every inquiry carefully and respond with the most useful next step.
-              </p>
             </div>
           </form>
         </CardContent>
