@@ -1,207 +1,352 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap");
+
 @import "tailwindcss";
+@import "tw-animate-css";
 
-@theme {
-  /* =========================
-     Junipra Color Tokens
-     ========================= */
+@custom-variant dark (&:is(.dark *));
 
-  /* Neutrals (paper + ink) */
-  --color-paper-50:  #FAFAF2;
-  --color-paper-100: #F0F0E0; /* main site background */
-  --color-paper-200: #E7E7D6; /* alt section tint / hover surface */
-  --color-paper-300: #DADAC8; /* borders on paper */
+:root {
+  --color-paper-50: #fafaf2;
+  --color-paper-100: #f0f0e0;
+  --color-paper-200: #e7e7d6;
+  --color-paper-300: #dadac8;
 
-  --color-ink-900: #0B2430;
-  --color-ink-800: #103040; /* primary text */
-  --color-ink-700: #2B4A5A; /* secondary text */
+  --color-ink-900: #0b2430;
+  --color-ink-800: #103040;
+  --color-ink-700: #2b4a5a;
 
-  /* Brand accents */
-  --color-berry-700: #2C5F7F; /* hover/active */
-  --color-berry-600: #3A789D;
-  --color-berry-500: #4E90B9; /* primary accent */
-  --color-berry-300: #7DB4D4; /* tint */
-  --color-berry-100: #D9EDF7; /* soft fill */
+  --color-berry-700: #2c5f7f;
+  --color-berry-600: #3a789d;
+  --color-berry-500: #4e90b9;
+  --color-berry-300: #7db4d4;
+  --color-berry-100: #d9edf7;
 
-  --color-juniper-800: #324A28; /* hover/active */
-  --color-juniper-600: #4F6B3A; /* supporting accent */
-  --color-juniper-300: #9AB483; /* tint */
-  --color-juniper-100: #E2EBDD; /* soft fill */
+  --color-juniper-800: #324a28;
+  --color-juniper-600: #4f6b3a;
+  --color-juniper-300: #9ab483;
+  --color-juniper-100: #e2ebdd;
+  --color-paper-glow: #f7f4eb;
+  --color-berry-mist: #edf5f9;
+  --color-juniper-mist: #eef3ea;
+  --color-sun-wash: #f4ead8;
 
-  /* Convenience aliases (so your classes read nicely) */
-  --color-bg: var(--color-paper-100);
-  --color-surface: var(--color-paper-50);
-  --color-surface-muted: color-mix(in oklab, var(--color-paper-200) 65%, white 35%);
-  --color-border: var(--color-paper-300);
-  --color-text: var(--color-ink-800);
-  --color-text-muted: var(--color-ink-700);
-  --color-link: var(--color-berry-700);
+  /* shadcn semantic mapping */
+  --background: var(--color-paper-100);
+  --foreground: var(--color-ink-800);
+  --card: var(--color-paper-50);
+  --card-foreground: var(--color-ink-800);
+  --popover: var(--color-paper-50);
+  --popover-foreground: var(--color-ink-800);
+  --primary: var(--color-berry-500);
+  --primary-foreground: var(--color-paper-50);
+  --secondary: var(--color-juniper-100);
+  --secondary-foreground: var(--color-juniper-800);
+  --muted: var(--color-paper-200);
+  --muted-foreground: var(--color-ink-700);
+  --accent: var(--color-berry-100);
+  --accent-foreground: var(--color-berry-700);
+  --destructive: #b95c4b;
+  --destructive-foreground: var(--color-paper-50);
+  --border: var(--color-paper-300);
+  --input: var(--color-paper-300);
+  --ring: var(--color-berry-300);
+  --chart-1: var(--color-berry-500);
+  --chart-2: var(--color-juniper-600);
+  --chart-3: var(--color-berry-700);
+  --chart-4: var(--color-juniper-300);
+  --chart-5: var(--color-berry-300);
+  --sidebar: var(--color-paper-50);
+  --sidebar-foreground: var(--color-ink-800);
+  --sidebar-primary: var(--color-berry-500);
+  --sidebar-primary-foreground: var(--color-paper-50);
+  --sidebar-accent: var(--color-juniper-100);
+  --sidebar-accent-foreground: var(--color-juniper-800);
+  --sidebar-border: var(--color-paper-300);
+  --sidebar-ring: var(--color-berry-300);
+  --radius: 1rem;
 
-  /* =========================
-     Typography
-     ========================= */
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-heading: "Fraunces", ui-serif, Georgia, serif;
-
-  /* Slightly “crafted” tracking without looking fancy */
+  --theme-font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --theme-font-heading: "Fraunces", ui-serif, Georgia, serif;
   --tracking-tightish: 0.01em;
-
-  /* =========================
-     Shadows (ink-tinted, soft)
-     ========================= */
-  --shadow-edge: 0 1px 0 rgba(16, 48, 64, 0.10);
-  --shadow-lift: 0 10px 30px rgba(16, 48, 64, 0.10);
+  --shadow-edge: 0 1px 0 rgba(16, 48, 64, 0.1);
+  --shadow-lift: 0 10px 30px rgba(16, 48, 64, 0.1);
   --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.5);
-
-  /* =========================
-     Radius
-     ========================= */
-  --radius-xl: 1rem;
-  --radius-2xl: 1.25rem;
-
-  /* =========================
-     Motion
-     ========================= */
-  --animate-float: float 4s ease-in-out infinite;
-
-  @keyframes float {
-    0%,
-    100% {
-      transform: rotate(-10deg);
-    }
-    50% {
-      transform: rotate(10deg);
-    }
-  }
 }
 
-/* =========================
-   Base
-   ========================= */
+.dark {
+  --background: var(--color-ink-900);
+  --foreground: var(--color-paper-50);
+  --card: var(--color-ink-800);
+  --card-foreground: var(--color-paper-50);
+  --popover: var(--color-ink-800);
+  --popover-foreground: var(--color-paper-50);
+  --primary: var(--color-berry-300);
+  --primary-foreground: var(--color-ink-900);
+  --secondary: #203629;
+  --secondary-foreground: var(--color-juniper-100);
+  --muted: #17323d;
+  --muted-foreground: #c4d3db;
+  --accent: #21485c;
+  --accent-foreground: #eaf6fc;
+  --destructive: #d07a68;
+  --destructive-foreground: var(--color-paper-50);
+  --border: #274551;
+  --input: #274551;
+  --ring: var(--color-berry-500);
+  --chart-1: var(--color-berry-300);
+  --chart-2: var(--color-juniper-300);
+  --chart-3: #98d3ef;
+  --chart-4: var(--color-juniper-600);
+  --chart-5: #c9e5f3;
+  --sidebar: #102a36;
+  --sidebar-foreground: var(--color-paper-50);
+  --sidebar-primary: var(--color-berry-300);
+  --sidebar-primary-foreground: var(--color-ink-900);
+  --sidebar-accent: #203629;
+  --sidebar-accent-foreground: var(--color-juniper-100);
+  --sidebar-border: #274551;
+  --sidebar-ring: var(--color-berry-500);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-paper-glow: var(--color-paper-glow);
+  --color-berry-mist: var(--color-berry-mist);
+  --color-juniper-mist: var(--color-juniper-mist);
+  --color-sun-wash: var(--color-sun-wash);
+
+  --font-sans: var(--theme-font-sans);
+  --font-heading: var(--theme-font-heading);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
 @layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
   html {
     scroll-behavior: smooth;
-    background: var(--color-bg);
-    color: var(--color-text);
-    font-family: var(--font-sans);
   }
 
   body {
-    overflow-x: hidden;
-    background: var(--color-bg);
-    color: var(--color-text);
+    @apply bg-background text-foreground;
+    font-family: var(--theme-font-sans);
   }
 
-  /* Headings get the serif */
-  h1, h2, h3, h4 {
-    font-family: var(--font-heading);
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--theme-font-heading);
     letter-spacing: var(--tracking-tightish);
-    color: var(--color-text);
   }
 
-  /* Links feel intentional (underline, offset, tint) */
   a {
-    color: var(--color-link);
+    color: var(--color-berry-700);
     text-decoration: underline;
     text-decoration-color: var(--color-berry-300);
     text-underline-offset: 4px;
   }
+
   a:hover {
     color: var(--color-berry-600);
     text-decoration-color: var(--color-berry-500);
   }
 
-  /* Better default focus (site-wide) */
   :focus-visible {
     outline: none;
     box-shadow:
       0 0 0 2px var(--color-berry-300),
-      0 0 0 4px var(--color-bg);
+      0 0 0 4px var(--background);
     border-radius: 10px;
   }
 }
 
-/* =========================
-   Components (optional but handy)
-   Use these as class names:
-   btn btn-primary, card, input, etc.
-   ========================= */
 @layer components {
-  .container-page {
-    @apply mx-auto max-w-6xl px-6;
-  }
-
-  .section {
-    @apply py-14;
-  }
-
-  .section-muted {
-    background: var(--color-surface-muted);
-  }
-
-  .card {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-2xl);
+  .card-soft {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) + 4px);
     box-shadow: var(--shadow-edge);
-    @apply p-6 transition;
   }
-  .card:hover {
+
+  .card-soft:hover {
     box-shadow: var(--shadow-lift);
-    transform: translateY(-2px);
   }
 
-  .btn {
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-edge);
-    @apply inline-flex items-center justify-center px-5 py-3 text-sm font-semibold transition;
-  }
-
-  .btn-primary {
-    background: var(--color-berry-500);
-    color: var(--color-paper-50);
-  }
-  .btn-primary:hover { background: var(--color-berry-600); }
-  .btn-primary:active { background: var(--color-berry-700); }
-
-  .btn-secondary {
-    background: var(--color-surface);
-    color: var(--color-text);
-    border: 1px solid var(--color-juniper-300);
+  .surface-inset {
     box-shadow: var(--shadow-inset);
   }
-  .btn-secondary:hover { background: var(--color-juniper-100); }
 
-  .badge {
-    background: var(--color-juniper-100);
-    border: 1px solid var(--color-juniper-300);
+  .site-canvas {
+    position: relative;
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at top left, color-mix(in oklab, var(--color-juniper-100) 72%, transparent) 0, transparent 32%),
+      radial-gradient(circle at top right, color-mix(in oklab, var(--color-berry-100) 74%, transparent) 0, transparent 36%),
+      linear-gradient(180deg, color-mix(in oklab, var(--background) 90%, white 10%) 0%, var(--background) 56%, color-mix(in oklab, var(--background) 94%, var(--color-paper-50) 6%) 100%);
+    isolation: isolate;
+  }
+
+  .site-canvas::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    background:
+      linear-gradient(90deg, rgba(255, 255, 255, 0.18) 0, rgba(255, 255, 255, 0) 14%, rgba(255, 255, 255, 0) 86%, rgba(255, 255, 255, 0.18) 100%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0, rgba(255, 255, 255, 0) 18%);
+    opacity: 0.65;
+  }
+
+  .site-canvas::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+      linear-gradient(to right, rgba(16, 48, 64, 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(16, 48, 64, 0.045) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.34), transparent 78%);
+    opacity: 0.5;
+  }
+
+  .site-shell {
+    position: relative;
+    z-index: 1;
+  }
+
+  .glass-panel {
+    background: color-mix(in oklab, var(--card) 88%, white 12%);
+    border: 1px solid color-mix(in oklab, var(--border) 78%, white 22%);
+    box-shadow:
+      var(--shadow-edge),
+      0 24px 60px rgba(16, 48, 64, 0.08);
+    backdrop-filter: blur(14px);
+  }
+
+  .hero-panel {
+    background:
+      linear-gradient(135deg, color-mix(in oklab, var(--card) 84%, white 16%) 0%, color-mix(in oklab, var(--color-berry-100) 24%, var(--card) 76%) 52%, color-mix(in oklab, var(--color-juniper-100) 26%, var(--card) 74%) 100%);
+    box-shadow:
+      var(--shadow-edge),
+      0 24px 60px rgba(16, 48, 64, 0.08);
+  }
+
+  .section-divider {
+    border-top: 1px solid color-mix(in oklab, var(--border) 70%, white 30%);
+    padding-top: 2rem;
+  }
+
+  .eyebrow-chip {
+    background: color-mix(in oklab, var(--color-paper-50) 82%, white 18%);
+    border: 1px solid color-mix(in oklab, var(--color-berry-300) 48%, var(--border) 52%);
+    color: var(--color-berry-700);
+    box-shadow: var(--shadow-inset);
+  }
+
+  .ornament-ring {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 3rem;
+    width: 3rem;
     border-radius: 999px;
-    @apply inline-flex items-center gap-2 px-3 py-1 text-xs font-semibold;
-  }
-
-  .input,
-  .textarea {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-inset);
-    color: var(--color-text);
-    @apply w-full px-4 py-3 text-sm transition;
-  }
-  .textarea { @apply min-h-[140px]; }
-
-  .input:focus,
-  .textarea:focus {
-    border-color: var(--color-berry-300);
-    outline: none;
+    border: 1px solid color-mix(in oklab, var(--color-berry-300) 42%, var(--border) 58%);
+    background: linear-gradient(135deg, color-mix(in oklab, var(--color-paper-50) 60%, white 40%) 0%, color-mix(in oklab, var(--color-berry-100) 32%, var(--color-paper-50) 68%) 100%);
     box-shadow:
       var(--shadow-inset),
-      0 0 0 2px var(--color-berry-300);
+      var(--shadow-edge);
   }
-}
 
-/* Placeholder color */
-.input::placeholder,
-.textarea::placeholder,
-.form-input::placeholder {
-  color: color-mix(in oklab, var(--color-text-muted) 55%, var(--color-bg) 45%);
+  .soft-row {
+    background: color-mix(in oklab, var(--card) 76%, white 24%);
+    border: 1px solid color-mix(in oklab, var(--border) 72%, white 28%);
+    box-shadow: var(--shadow-inset);
+  }
+
+  .nav-pill {
+    color: var(--color-text);
+  }
+
+  .nav-pill:hover {
+    background: color-mix(in oklab, var(--color-paper-50) 62%, white 38%);
+  }
+
+  .nav-pill-active {
+    background: color-mix(in oklab, var(--color-berry-100) 56%, var(--card) 44%);
+    color: var(--color-berry-700);
+    box-shadow: var(--shadow-inset);
+  }
+
+  .button-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: var(--primary);
+    color: var(--primary-foreground);
+    padding: 0.7rem 1.15rem;
+    font-size: 0.925rem;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: var(--shadow-edge);
+    transition: background 160ms ease;
+  }
+
+  .button-chip:hover {
+    background: var(--color-berry-600);
+    text-decoration: none;
+  }
+
+  .status-active {
+    border-color: var(--color-juniper-300);
+    background: var(--color-juniper-100);
+    color: var(--color-juniper-800);
+  }
+
+  .status-soon {
+    border-color: var(--color-berry-300);
+    background: var(--color-berry-100);
+    color: var(--color-berry-700);
+  }
 }

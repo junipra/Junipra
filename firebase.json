@@ -4,6 +4,7 @@
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
+    "site": "junipra-da9b4",
     "public": "dist",
     "ignore": [
       "firebase.json",
@@ -16,8 +17,5 @@
         "destination": "/index.html"
       }
     ]
-  },
-  "extensions": {
-    "firestore-send-email": "firebase/firestore-send-email@0.2.4"
   }
 }

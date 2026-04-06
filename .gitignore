@@ -12,7 +12,14 @@ dist
 dist-ssr
 *.local
 .env
-extensions/firestore-send-email.env
+.env.*.local
+.firebase
+firebase-debug.log
+oldSite/.env
+oldSite/extensions/*.env
+.agents/
+oldSite/
+skills-lock.json
 
 # Editor directories and files
 .vscode/*

@@ -2,7 +2,40 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     match /submissions/{submissionId} {
-      allow create: if true; // Replace with better rules in production
+      allow read, update, delete: if false;
+      allow create: if
+        request.resource.data.keys().hasOnly(["to", "replyTo", "message", "form", "submittedAt"]) &&
+        request.resource.data.to is list &&
+        request.resource.data.to.size() == 1 &&
+        request.resource.data.to[0] == "info@junipra.com" &&
+        request.resource.data.replyTo is string &&
+        request.resource.data.replyTo.size() >= 5 &&
+        request.resource.data.replyTo.size() <= 160 &&
+        request.resource.data.replyTo.matches("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$") &&
+        request.resource.data.message is map &&
+        request.resource.data.form is map &&
+        request.resource.data.message.keys().hasOnly(["subject", "text", "html"]) &&
+        request.resource.data.form.keys().hasOnly(["name", "email", "project"]) &&
+        request.resource.data.form.name is string &&
+        request.resource.data.form.name.size() >= 2 &&
+        request.resource.data.form.name.size() <= 80 &&
+        request.resource.data.form.email is string &&
+        request.resource.data.form.email.size() >= 5 &&
+        request.resource.data.form.email.size() <= 160 &&
+        request.resource.data.form.email.matches("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$") &&
+        request.resource.data.form.project is string &&
+        request.resource.data.form.project.size() >= 20 &&
+        request.resource.data.form.project.size() <= 4000 &&
+        request.resource.data.message.subject is string &&
+        request.resource.data.message.subject.size() > 0 &&
+        request.resource.data.message.subject.size() <= 160 &&
+        request.resource.data.message.text is string &&
+        request.resource.data.message.text.size() > 0 &&
+        request.resource.data.message.text.size() <= 5000 &&
+        request.resource.data.message.html is string &&
+        request.resource.data.message.html.size() > 0 &&
+        request.resource.data.message.html.size() <= 20000 &&
+        request.resource.data.submittedAt == request.time;
     }
   }
 }
